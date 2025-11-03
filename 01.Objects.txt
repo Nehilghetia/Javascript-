@@ -1,0 +1,89 @@
+🟦 1. What is an Object?
+
+🧩 Definition:
+
+A collection of key–value pairs used to store and organize data.
+
+Keys: property names
+Values: property values
+Reference type → stored by reference (not by value).
+Dynamic: properties can be added, modified, or deleted anytime.
+
+💡 Example:
+
+const person = { name: "John", age: 30 };
+
+🟦 2. Ways to Create Objects
+
+⚙ Different creation methods:
+
+1️⃣ Object Literal
+const obj = { name: "John", age: 30 };
+
+
+2️⃣ Object Constructor
+const obj = new Object();
+obj.name = "John";
+
+
+3️⃣ Constructor Function
+function Person(name) { 
+  this.name = name; 
+}
+const p = new Person("John");
+
+
+4️⃣ Object.create()
+const obj = Object.create({ role: "admin" });
+
+🟦 3. Accessing Properties
+
+🔹 Dot Notation:
+obj.name
+
+🔹 Bracket Notation:
+obj["user-role"], obj[key]
+
+🟦 4. Dot vs Bracket Notation
+
+Type			Syntax				When to Use
+Dot Notation		obj.name			Simple, known property names
+Bracket Notation	obj["name"] or obj[key]		Dynamic or special property names (with spaces, hyphens, etc.)
+
+🟦 5. Important Object Methods
+
+Method	Description
+Object.keys(obj)	Returns array of property names
+Object.values(obj)	Returns array of property values
+Object.entries(obj)	Returns array of [key, value] pairs
+Object.assign(target, source)	Copies or merges properties from source to target
+Object.Freeze(obj)	Makes object completely immutable
+Object.seal(obj)	Prevents add/delete but allows modification
+
+🔸 Comparison Table:
+
+Method	Add	Delete	Modify
+freeze	❌ No	❌ No	❌ No
+seal	❌ No	❌ No	✅ Yes
+🟦 6. Destructuring
+
+🧩 Purpose: Extract values directly from objects or arrays.
+
+🔹 Object Destructuring
+const { name, age } = { name: "John", age: 30 };
+
+🔹 Rename & Default Values
+const { name: personName, country = "USA" } = person;
+
+🔹 Nested Destructuring
+const user = { details: { age: 30 } };
+const { details: { age } } = user;
+
+🔹 Array Destructuring
+const [a, b, c] = [1, 2, 3];
+const [first, ...rest] = ["a", "b", "c"];
+
+🔹 Function Parameter Destructuring
+function show({ name, age }) {
+  console.log(name, age);
+}
