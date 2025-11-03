@@ -1,0 +1,220 @@
+🟦 1. Array Methods
+🔹 slice(start, end)
+
+Returns a shallow copy (non-mutating).
+
+Extracts a portion of an array.
+
+💡 Example:
+const arr = [10, 20, 30, 40, 50];
+const part = arr.slice(1, 4);
+console.log(part); // [20, 30, 40]
+
+🔹 splice(start, deleteCount, ...items)
+
+Modifies the original array (adds/removes elements).
+
+💡 Example 1 – Remove:
+const arr = [1, 2, 3, 4];
+arr.splice(2, 1);
+console.log(arr); // [1, 2, 4]
+
+
+💡 Example 2 – Add:
+const arr = [1, 2, 3];
+arr.splice(1, 0, "a", "b");
+console.log(arr); // [1, "a", "b", 2, 3]
+
+🔹 concat(array2, ...)
+
+Merges arrays and returns a new array.
+
+💡 Example:
+const arr1 = [1, 2];
+const arr2 = [3, 4];
+const merged = arr1.concat(arr2);
+console.log(merged); // [1, 2, 3, 4]
+
+🔹 join(separator)
+
+Converts array → string using a separator.
+
+💡 Example:
+const arr = ["JS", "is", "fun"];
+console.log(arr.join(" ")); // "JS is fun"
+
+🔹 indexOf(value)
+
+Returns first index of value, or -1 if not found.
+
+💡 Example:
+const arr = ["apple", "banana", "apple"];
+console.log(arr.indexOf("apple")); // 0
+
+🔹 lastIndexOf(value)
+
+Returns last index of value.
+
+💡 Example:
+const arr = ["dog", "cat", "dog"];
+console.log(arr.lastIndexOf("dog")); // 2
+
+🔹 includes(value)
+
+Returns true if array contains value.
+
+💡 Example:
+const arr = [1, 2, 3, 4];
+console.log(arr.includes(3)); // true
+
+🔹 sort(compareFunction)
+
+Sorts elements in place.
+
+Default: lexicographic (string order).
+
+Use (a, b) => a - b for numeric sort.
+
+💡 Example 1 – String sort:
+const arr = ["c", "a", "b"];
+arr.sort();
+console.log(arr); // ["a", "b", "c"]
+
+
+💡 Example 2 – Numeric sort:
+const nums = [5, 1, 10];
+nums.sort((a, b) => a - b);
+console.log(nums); // [1, 5, 10]
+
+🔹 localeCompare()
+
+For language-specific string sorting inside arrays.
+
+💡 Example:
+const fruits = ["éclair", "apple", "banana"];
+fruits.sort((a, b) => a.localeCompare(b));
+console.log(fruits);
+
+🟦 2. String Methods
+🔹 charAt(index)
+
+Returns character at the given index.
+
+💡 Example:
+console.log("Java".charAt(0)); // "J"
+
+🔹 substring(start, end)
+
+Extracts characters (non-mutating).
+
+💡 Example:
+console.log("JavaScript".substring(0, 4)); // "Java"
+
+🔹 substr(start, length)
+
+Extracts characters (legacy method – not recommended).
+
+💡 Example:
+console.log("HelloWorld".substr(0, 5)); // "Hello"
+
+🔹 replace(search, newValue)
+
+Replaces first occurrence.
+
+💡 Example:
+console.log("Hello world".replace("world", "JS")); // "Hello JS"
+
+🔹 toUpperCase() / toLowerCase()
+
+Converts text case.
+
+💡 Example:
+console.log("hi".toUpperCase()); // "HI"
+console.log("HI".toLowerCase()); // "hi"
+
+🔹 trim()
+
+Removes whitespace from both ends.
+
+💡 Example:
+console.log("  JS  ".trim()); // "JS"
+
+🔹 split(separator, limit)
+
+Splits string into an array.
+
+💡 Example:
+console.log("JS is fun".split(" ")); // ["JS", "is", "fun"]
+
+🔹 search(regexp)
+
+Returns index of first match or -1.
+
+💡 Example:
+console.log("JS is fun".search("fun")); // 6
+
+🔹 match(regexp)
+
+Returns array of all matches.
+
+💡 Example:
+console.log("text".match(/t/g)); // ['t', 't']
+
+🔹 localeCompare(string2)
+
+Compares strings alphabetically by locale rules.
+
+💡 Example:
+console.log("apple".localeCompare("banana")); // -1
+
+🟦 3. Template Literals
+
+Use backticks (`) for strings.
+
+Allow multi-line strings and variable embedding.
+
+💡 Example:
+let name = "John";
+let msg = `Hello ${name}`;
+console.log(msg); // "Hello John"
+
+
+💡 Multi-line Example:
+let lines = `This is line one.
+This is line two.`;
+console.log(lines);
+
+🟦 4. Practice Review
+
+Concept					Description
+slice					Extract part of array (non-mutating)
+splice					Add/remove elements (modifies array)
+concat					Merge arrays
+join					Convert array → string
+indexOf / lastIndexOf / includes	Search in arrays
+sort					Sort elements (use compare function for numbers)
+charAt / substring / replace		String manipulation
+toUpperCase / toLowerCase		Change case
+trim					Remove extra spaces
+split					Convert string → array
+Template Literals			String interpolation, multiline support
+search / match				Pattern-based search using regex
+
+🟦 5. Summary
+
+🧮 Array:
+Method					Use
+slice					Copy
+splice					Modify
+concat					Merge
+join					Convert to string
+indexOf / lastIndexOf / includes	Search
+sort					Order elements
+
+🔤 String:
+
+Method							Use
+charAt / substring / replace				Extract or modify text
+trim / split / toUpperCase / toLowerCase		Cleanup or convert
+Template Literals					Modern string formatting
+search / match						Regex-based operations
