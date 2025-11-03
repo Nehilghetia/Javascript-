@@ -12,28 +12,33 @@ Write functions flexibly depending on use case (hoisting, this behavior, readabi
 function add(a, b) {
   return a + b;
 }
-console.log(add(2, 3)); // 5
+console.log(add(2, 3)); 
+// 5
 
 // Function Expression (not hoisted)
 const sub = function(a, b) {
   return a - b;
 };
-console.log(sub(5, 2)); // 3
+console.log(sub(5, 2)); 
+// 3
 
 // Arrow Function (short syntax, no this)
 const mul = (a, b) => a * b;
-console.log(mul(3, 4)); // 12
+console.log(mul(3, 4)); 
+// 12
 
 // Named Function Expression (helps debugging)
 const div = function divide(a, b) {
   return a / b;
 };
-console.log(div(10, 2)); // 5
+console.log(div(10, 2)); 
+// 5
 
 // IIFE (Immediately Invoked Function Expression)
 (function() {
   console.log("IIFE runs instantly");
-})(); // Output: IIFE runs instantly
+})(); 
+// Output: IIFE runs instantly
 
 🟨 2. Parameters vs Arguments
 
@@ -55,19 +60,6 @@ function greet(name = "Guest") {   // 'name' = parameter
 greet("Nehil"); // 'Nehil' = argument
 greet();        // uses default parameter -> Guest
 
-
-🔸 Extra:
-arguments object exists only in normal functions:
-
-function show() {
-  console.log(arguments); // works
-}
-show(1, 2, 3);
-
-const arrow = () => {
-  console.log(arguments); // ❌ error
-};
-
 🟩 3. Scope in JavaScript
 
 🧩 Definition:
@@ -86,10 +78,6 @@ function test() {
   // console.log(c); ❌ not accessible
 }
 test();
-
-
-💡 Benefit:
-Controls access & prevents accidental overwriting.
 
 🟧 4. Hoisting
 
@@ -119,10 +107,10 @@ const greet = function() {
 🧩 Purpose:
 Used to declare variables.
 
-Keyword	Scope	Reassign	Redeclare
-var	Function	✅ Yes	✅ Yes
-let	Block	✅ Yes	❌ No
-const	Block	❌ No	❌ No
+Keyword  	Scope	    Reassign	Redeclare
+var	      Function	✅ Yes	  ✅ Yes
+let	      Block	    ✅ Yes  	❌ No
+const	    Block	    ❌ No	    ❌ No
 var a = 5;
 let b = 10;
 const c = 15;
