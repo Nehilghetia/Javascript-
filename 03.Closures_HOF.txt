@@ -1,0 +1,247 @@
+🟦 1. Understanding Closures
+🧩 Definition:
+
+A closure is a function that “remembers” variables from its lexical scope, even after the outer function has finished executing.
+
+💡 Key Points:
+
+Created whenever a function is declared inside another.
+
+Can access outer variables even after outer function ends.
+
+Helps in data privacy and state management.
+
+🧠 Example:
+function outer() {
+  let message = "Hello Closure!";
+
+  function inner() {
+    console.log(message); // Access outer variable
+  }
+
+  return inner;
+}
+
+const greet = outer();
+greet();  // Output: Hello Closure!
+
+📝 Explanation:
+
+inner() keeps access to message through closure — even though outer() has finished running.
+
+🟦 2. Lexical Environment
+🧩 Definition:
+
+A lexical environment is the place where variables and functions live.
+Each function has access to:
+
+Its own variables.
+
+Variables from its outer functions (scope chain).
+
+💡 Key Idea:
+
+When a function is created, it stores a reference to its outer scope (lexical environment).
+That’s why closures work.
+
+🧠 Example:
+function greet() {
+  let name = "Alice";
+
+  return function() {
+    console.log("Hello " + name);
+  };
+}
+
+const sayHello = greet();
+sayHello(); // Output: Hello Alice
+
+📝 Explanation:
+
+Even after greet() ends, the inner function remembers name through its lexical environment.
+
+🟦 3. Applications of Closures
+🔹 3.1 Data Privacy / Encapsulation
+
+Closures make variables private and accessible only through returned functions.
+
+🧠 Example:
+function createCounter() {
+  let count = 0;
+
+  return {
+    increment: function() {
+      count++;
+      return count;
+    },
+    getCount: function() {
+      return count;
+    }
+  };
+}
+
+const counter = createCounter();
+console.log(counter.increment()); // 1
+console.log(counter.increment()); // 2
+console.log(counter.getCount());  // 2
+
+
+✅ Private variable: count cannot be changed directly from outside.
+
+🔹 3.2 Function Factory
+
+Closures let one function create customized functions.
+
+🧠 Example:
+function createMultiplier(multiplier) {
+  return function(num) {
+    return num * multiplier;
+  };
+}
+
+const double = createMultiplier(2);
+const triple = createMultiplier(3);
+
+console.log(double(5)); // 10
+console.log(triple(5)); // 15
+
+
+✅ Each returned function remembers its own multiplier.
+
+🔹 3.3 Stateful Functions
+
+Closures help maintain a value between multiple function calls.
+
+🧠 Example:
+function scoreKeeper() {
+  let score = 0;
+  return function(points) {
+    score += points;
+    return score;
+  };
+}
+
+const player = scoreKeeper();
+console.log(player(10)); // 10
+console.log(player(5));  // 15
+
+
+✅ State (score) is preserved between calls.
+
+🟦 4. Practice Assignments
+🧩 Example 1 — Bank Account (Data Privacy)
+
+Create a closure that keeps track of a bank balance.
+
+function createBankAccount(initialBalance) {
+  let balance = initialBalance;
+
+  return {
+    deposit: function(amount) {
+      balance += amount;
+      return balance;
+    },
+    withdraw: function(amount) {
+      if(amount <= balance) balance -= amount;
+      return balance;
+    },
+    getBalance: function() {
+      return balance;
+    }
+  };
+}
+
+const account = createBankAccount(100);
+console.log(account.deposit(50));   // 150
+console.log(account.withdraw(30));  // 120
+
+🧩 Example 2 — Function Factory (Shapes)
+
+Write a factory that returns area functions for shapes.
+
+function areaFactory(shape) {
+  if (shape === "square") {
+    return function(side) { return side * side; };
+  } else if (shape === "circle") {
+    return function(radius) { return Math.PI * radius * radius; };
+  }
+}
+
+const squareArea = areaFactory("square");
+console.log(squareArea(5)); // 25
+
+🧩 Example 3 — Memory Safe Closure
+
+Avoid retaining large data inside closure.
+
+function safeClosure() {
+  let temp = "used once";
+  console.log(temp);
+  temp = null; // release memory
+}
+
+safeClosure();
+
+🟦 5. Higher-Order Functions (HOFs)
+🧩 Definition:
+
+A Higher-Order Function is one that either:
+
+Takes another function as an argument, or
+
+Returns a function.
+
+💡 Uses:
+
+Reusable, flexible, and abstract code.
+
+Examples in JS: map(), filter(), reduce(), forEach().
+
+🧠 Example 1 — Takes Function as Argument
+function applyOperation(a, b, operation) {
+  return operation(a, b);
+}
+
+function add(x, y) {
+  return x + y;
+}
+
+console.log(applyOperation(5, 3, add));  // Output: 8
+
+🧠 Example 2 — Returns a Function
+function multiplier(factor) {
+  return function(num) {
+    return num * factor;
+  };
+}
+
+const double = multiplier(2);
+console.log(double(5)); // 10
+
+🟦 6. Method Chaining in JS (Using HOFs)
+🧩 Definition:
+
+Calling multiple methods one after another in a single statement.
+
+💡 Advantages:
+
+Clean, compact code.
+
+Avoids intermediate variables.
+
+Easy to read and maintain.
+
+🧠 Example — Without Method Chaining
+const numbers = [1, 2, 3, 4, 5];
+
+const doubled = numbers.map(n => n * 2);
+const filtered = doubled.filter(n => n > 5);
+
+console.log(filtered); // [6, 8, 10]
+
+🧠 Example — With Method Chaining
+const result = [1, 2, 3, 4, 5]
+  .map(n => n * 2)
+  .filter(n => n > 5);
+
+console.log(result); // [6, 8, 10]
