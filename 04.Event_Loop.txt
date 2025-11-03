@@ -1,0 +1,192 @@
+1️⃣ Asynchronous Programming
+
+🧩 Definition:
+JavaScript runs on a single thread, but asynchronous programming lets it start long tasks (like timers or API calls) and continue executing other code without waiting — avoiding blocking.
+
+💡 Example:
+
+console.log("Start");
+
+setTimeout(() => {
+  console.log("Async Task");
+}, 2000);
+
+console.log("End");
+
+
+📤 Output:
+
+Start
+End
+Async Task
+
+
+🟢 JS continues executing after scheduling the setTimeout() — async task runs later via the event loop.
+
+2️⃣ Callback Functions
+
+🧩 Definition:
+A callback function is a function passed as an argument to another function and executed after a specific event or delay.
+
+💡 Example:
+
+function greetUser(name, callback) {
+  console.log("Hello " + name);
+  callback();
+}
+
+function bye() {
+  console.log("Goodbye!");
+}
+
+greetUser("Nehil", bye);
+
+
+📤 Output:
+
+Hello Nehil
+Goodbye!
+
+
+✅ Callbacks ensure that code executes in sequence after async tasks.
+
+3️⃣ setTimeout() & setInterval()
+
+🧩 Definition:
+Used to delay or repeat function execution.
+
+💡 Example (setTimeout):
+
+setTimeout(() => console.log("After 3s"), 3000);
+
+
+Runs once after 3 seconds.
+
+💡 Example (setInterval):
+
+let count = 3;
+let timer = setInterval(() => {
+  console.log(count--);
+  if (count < 0) clearInterval(timer);
+}, 1000);
+
+
+📤 Output:
+
+3
+2
+1
+0
+(stops)
+
+4️⃣ Event Loop — The Core Mechanism
+
+🧩 Definition:
+The Event Loop ensures non-blocking execution by moving completed async tasks (from Web APIs) to the Call Stack when it’s empty.
+
+💡 Example:
+
+console.log("Start");
+
+setTimeout(() => console.log("Timeout"), 0);
+
+console.log("End");
+
+
+📤 Output:
+
+Start
+End
+Timeout
+
+
+🌀 Rule: The Event Loop executes callbacks only when the call stack is empty.
+
+5️⃣ Callback Hell 😵‍💫
+
+🧩 Definition:
+When multiple callbacks are nested inside each other, the code becomes hard to read and maintain — known as callback hell.
+
+💡 Example:
+
+doTask1(() => {
+  doTask2(() => {
+    doTask3(() => {
+      console.log("All done!");
+    });
+  });
+});
+
+
+⚠ Problems:
+
+Hard to debug
+
+Difficult to maintain
+
+Unreadable
+
+✅ Solutions:
+Use Promises or async/await.
+
+6️⃣ Sequential vs Parallel Execution
+
+🧩 Definition:
+
+Sequential: Tasks execute one after another.
+
+Parallel: Tasks execute together without waiting.
+
+💡 Example (Sequential):
+
+wash(() => {
+  dry(() => {
+    iron();
+  });
+});
+
+
+💡 Example (Parallel):
+
+wash();
+dry();
+iron();
+
+7️⃣ Real-World Example — Food Order System
+
+🧩 Definition:
+Simulates async operations using callbacks (like cooking and delivering food).
+
+💡 Example:
+
+function cookFood(cb) {
+  setTimeout(() => {
+    console.log("Food cooked");
+    cb();
+  }, 2000);
+}
+
+function deliverFood() {
+  setTimeout(() => {
+    console.log("Food delivered");
+  }, 1000);
+}
+
+cookFood(() => {
+  deliverFood();
+});
+
+
+📤 Output:
+
+Food cooked
+Food delivered
+
+8️⃣ Key Takeaways
+
+Concept						Description
+Single-threaded				JS executes one task at a time
+Callback						Function executed later/asynchronously
+Event Loop					Moves async callbacks to call stack when free Web APIs Browser-provided async features
+Callback Hell	 				Too many nested callbacks
+Avoid						Use Promises / async-await instead
