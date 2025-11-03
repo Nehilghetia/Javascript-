@@ -1,0 +1,188 @@
+🟦 1. Ways to Write Functions
+
+🧩 Definition:
+Different syntaxes to create functions in JS.
+
+⚙ Purpose:
+Write functions flexibly depending on use case (hoisting, this behavior, readability).
+
+🔹 Types & Examples:
+
+// Function Declaration (hoisted)
+function add(a, b) {
+  return a + b;
+}
+console.log(add(2, 3)); // 5
+
+// Function Expression (not hoisted)
+const sub = function(a, b) {
+  return a - b;
+};
+console.log(sub(5, 2)); // 3
+
+// Arrow Function (short syntax, no this)
+const mul = (a, b) => a * b;
+console.log(mul(3, 4)); // 12
+
+// Named Function Expression (helps debugging)
+const div = function divide(a, b) {
+  return a / b;
+};
+console.log(div(10, 2)); // 5
+
+// IIFE (Immediately Invoked Function Expression)
+(function() {
+  console.log("IIFE runs instantly");
+})(); // Output: IIFE runs instantly
+
+🟨 2. Parameters vs Arguments
+
+🧩 Definition:
+
+Parameters → names in function definition
+
+Arguments → actual values passed during call
+
+⚙ Purpose:
+Functions use arguments to receive input data.
+
+🔹 Example:
+
+function greet(name = "Guest") {   // 'name' = parameter
+  console.log("Hello " + name);
+}
+
+greet("Nehil"); // 'Nehil' = argument
+greet();        // uses default parameter -> Guest
+
+
+🔸 Extra:
+arguments object exists only in normal functions:
+
+function show() {
+  console.log(arguments); // works
+}
+show(1, 2, 3);
+
+const arrow = () => {
+  console.log(arguments); // ❌ error
+};
+
+🟩 3. Scope in JavaScript
+
+🧩 Definition:
+Scope = area where a variable is accessible.
+
+⚙ Types:
+
+var a = 10; // Global scope
+
+function test() {
+  var b = 20; // Function scope
+  if (true) {
+    let c = 30; // Block scope
+    console.log(a, b, c); // ✅ 10 20 30
+  }
+  // console.log(c); ❌ not accessible
+}
+test();
+
+
+💡 Benefit:
+Controls access & prevents accidental overwriting.
+
+🟧 4. Hoisting
+
+🧩 Definition:
+JS moves declarations (not initializations) to top of scope.
+
+⚙ Examples:
+
+console.log(x); // undefined
+var x = 10;
+
+console.log(y); // ❌ ReferenceError (TDZ)
+let y = 20;
+
+sayHi(); // works
+function sayHi() {
+  console.log("Hello!");
+}
+
+// greet(); ❌ Error
+const greet = function() {
+  console.log("Hi!");
+};
+
+🟪 5. var / let / const
+
+🧩 Purpose:
+Used to declare variables.
+
+Keyword	Scope	Reassign	Redeclare
+var	Function	✅ Yes	✅ Yes
+let	Block	✅ Yes	❌ No
+const	Block	❌ No	❌ No
+var a = 5;
+let b = 10;
+const c = 15;
+
+🟫 6. Lexical Scope
+
+🧩 Definition:
+A function’s access to variables depends on where it is written, not where it’s called.
+
+⚙ Example:
+
+function outer() {
+  let name = "JS";
+  function inner() {
+    console.log(name); // inner can access outer variable
+  }
+  inner();
+}
+outer(); // Output: JS
+
+🟥 7. Data Types in JavaScript
+
+🧩 Two kinds:
+
+Primitive:
+String, Number, Boolean, Undefined, Null, BigInt, Symbol
+
+Non-Primitive (Objects):
+Object, Array, Function, Map, Set, Date
+
+⚙ Example:
+
+let name = "Nehil";    // String
+let age = 21;          // Number
+let active = true;     // Boolean
+let user = {id: 1};    // Object
+let nums = [1, 2, 3];  // Array
+
+
+💡 JS stores:
+
+Primitives → by value
+
+Objects → by reference
+
+🟦 8. JavaScript Typing
+
+🧩 Definition:
+JS is dynamically typed — variable types are determined at runtime.
+
+⚙ Meaning:
+A variable can hold different types at different times.
+
+💡 Example:
+
+let data = 10;       // Number
+console.log(typeof data); // "number"
+
+data = "Hello";      // now String
+console.log(typeof data); // "string"
+
+data = true;         // now Boolean
+console.log(typeof data); // "boolean"
